@@ -1,727 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kishore Manchikatla — Senior Platform Engineer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kishore Manchikatla — Staff Platform Engineer (AI / Infrastructure)</title>
+<meta name="description" content="Platform engineer, 12+ years. I build the verification infrastructure that makes AI-driven automation trustworthy in production. Kubernetes, AWS, GitOps, agentic AI safety." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root{
+    --bg:#0d1117; --surface:#161b22; --border:#21262d; --text:#e6edf3; --muted:#8b949e;
+    --accent:#58a6ff; --accent2:#3fb950; --accent3:#f78166; --accent4:#d2a8ff;
+    --tag-bg:#1f2937; --card:#1c2128;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:940px;margin:0 auto;padding:0 24px}
+  code,.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
 
-    :root {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --border: #21262d;
-      --text: #e6edf3;
-      --muted: #8b949e;
-      --accent: #58a6ff;
-      --accent2: #3fb950;
-      --accent3: #f78166;
-      --accent4: #d2a8ff;
-      --tag-bg: #1f2937;
-      --card: #1c2128;
-    }
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(13,17,23,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+  nav .brand{font-weight:600;letter-spacing:-.2px}
+  nav .links{display:flex;gap:18px;flex-wrap:wrap}
+  nav a{color:var(--muted);text-decoration:none;font-size:.9rem}
+  nav a:hover{color:var(--accent)}
 
-    html { scroll-behavior: smooth; }
+  /* hero */
+  header.hero{padding:72px 0 48px;border-bottom:1px solid var(--border)}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--accent2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+  h1{font-size:clamp(2rem,5vw,3rem);line-height:1.1;letter-spacing:-1.2px;font-weight:700}
+  .role{font-size:1.15rem;color:var(--accent);margin-top:10px;font-weight:500}
+  .thesis{margin-top:24px;font-size:1.08rem;color:var(--text);max-width:70ch}
+  .thesis strong{color:var(--accent4)}
+  .sub{margin-top:16px;color:var(--muted);max-width:72ch}
+  .cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:9px 16px;border-radius:7px;border:1px solid var(--border);background:var(--surface);color:var(--text);text-decoration:none;font-size:.9rem;font-weight:500}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.primary{background:var(--accent);color:#08131f;border-color:var(--accent)}
+  .btn.primary:hover{opacity:.9;color:#08131f}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      font-size: 15px;
-    }
+  /* sections */
+  section{padding:56px 0;border-bottom:1px solid var(--border)}
+  h2{font-size:1.5rem;letter-spacing:-.4px;margin-bottom:8px}
+  h2 .num{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--accent2);margin-right:10px}
+  .lede{color:var(--muted);margin-bottom:28px;max-width:74ch}
 
-    /* ── NAV ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(13, 17, 23, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      height: 52px;
-      overflow-x: auto;
-    }
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 500;
-      white-space: nowrap;
-      padding: 4px 10px;
-      border-radius: 6px;
-      transition: color 0.2s, background 0.2s;
-    }
-    nav a:hover { color: var(--text); background: var(--border); }
-    nav .logo { color: var(--accent); font-weight: 700; font-size: 14px; margin-right: auto; }
+  /* metrics */
+  .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+  .metric{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px}
+  .metric .v{font-family:'JetBrains Mono',monospace;font-size:1.5rem;color:var(--accent2);font-weight:500;line-height:1.2}
+  .metric .l{color:var(--muted);font-size:.85rem;margin-top:6px}
 
-    /* ── LAYOUT ── */
-    main { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+  /* cards */
+  .cards{display:grid;gap:18px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
+  .card h3{font-size:1.15rem;margin-bottom:4px}
+  .card .meta{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent3);margin-bottom:14px}
+  .card p{color:var(--muted);margin-bottom:14px}
+  .card ul{list-style:none;display:grid;gap:9px}
+  .card li{padding-left:20px;position:relative;font-size:.94rem}
+  .card li::before{content:'▸';position:absolute;left:0;color:var(--accent)}
+  .card li b{color:var(--text)}
+  .badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:.72rem;font-family:'JetBrains Mono',monospace;border:1px solid var(--border);background:var(--tag-bg);color:var(--muted);margin-left:8px;vertical-align:middle}
+  .badge.int{color:var(--accent3);border-color:#5a2e22}
 
-    section { margin-bottom: 5rem; }
+  /* experience */
+  .job{margin-bottom:34px}
+  .job .top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline}
+  .job h3{font-size:1.12rem}
+  .job .when{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--muted);white-space:nowrap}
+  .job .ctx{color:var(--muted);font-size:.9rem;margin:6px 0 16px}
+  .group{margin-bottom:18px}
+  .group h4{font-size:.82rem;font-family:'JetBrains Mono',monospace;color:var(--accent4);text-transform:uppercase;letter-spacing:.06em;margin-bottom:9px}
+  .group ul{list-style:none;display:grid;gap:9px}
+  .group li{padding-left:20px;position:relative;font-size:.95rem;color:#c9d4e0}
+  .group li::before{content:'—';position:absolute;left:0;color:var(--border)}
+  .group li b{color:var(--text)}
 
-    .section-label {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
-    .section-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--accent);
-      background: rgba(88, 166, 255, 0.1);
-      border: 1px solid rgba(88, 166, 255, 0.25);
-      padding: 2px 8px;
-      border-radius: 4px;
-    }
-    .section-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-    }
+  /* skills */
+  .skills{display:grid;gap:14px}
+  .srow{display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:start}
+  .srow .k{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--accent);padding-top:4px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{background:var(--tag-bg);border:1px solid var(--border);border-radius:6px;padding:3px 9px;font-size:.8rem;color:#c9d4e0}
+  @media(max-width:640px){.srow{grid-template-columns:1fr;gap:6px}}
 
-    /* ── HERO ── */
-    .hero { padding: 5rem 0 3rem; }
-    .hero-greeting {
-      font-size: 13px;
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      letter-spacing: 0.05em;
-    }
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 0.5rem;
-    }
-    .hero h1 span { color: var(--accent); }
-    .hero-title {
-      font-size: 1.1rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      font-weight: 400;
-    }
-    .hero-summary {
-      font-size: 15px;
-      color: #c9d1d9;
-      max-width: 640px;
-      line-height: 1.8;
-      margin-bottom: 2.5rem;
-    }
-    .hero-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-    .hero-links a {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #0d1117;
-    }
-    .btn-primary:hover { background: #79c0ff; }
-    .btn-ghost {
-      border: 1px solid var(--border);
-      color: var(--text);
-      background: var(--surface);
-    }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* ── METRICS ── */
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1rem;
-      margin-bottom: 5rem;
-    }
-    .metric-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      transition: border-color 0.2s;
-    }
-    .metric-card:hover { border-color: var(--accent); }
-    .metric-value {
-      font-size: 1.8rem;
-      font-weight: 700;
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--accent);
-      line-height: 1.1;
-      margin-bottom: 0.25rem;
-    }
-    .metric-value.green { color: var(--accent2); }
-    .metric-value.purple { color: var(--accent4); }
-    .metric-value.red { color: var(--accent3); }
-    .metric-label { font-size: 12px; color: var(--muted); font-weight: 500; }
-
-    /* ── SKILLS ── */
-    .skill-groups { display: flex; flex-direction: column; gap: 1.25rem; }
-    .skill-group { display: flex; gap: 1rem; align-items: flex-start; }
-    .skill-group-name {
-      min-width: 180px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--muted);
-      padding-top: 4px;
-      flex-shrink: 0;
-    }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tag {
-      background: var(--tag-bg);
-      border: 1px solid var(--border);
-      color: #c9d1d9;
-      padding: 3px 10px;
-      border-radius: 6px;
-      font-size: 12.5px;
-      font-weight: 500;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .tag:hover { border-color: var(--accent); color: var(--accent); }
-    .tag.highlight { border-color: rgba(88,166,255,0.4); color: var(--accent); background: rgba(88,166,255,0.08); }
-
-    /* ── EXPERIENCE ── */
-    .job { margin-bottom: 3rem; }
-    .job-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.25rem;
-    }
-    .job-title { font-size: 17px; font-weight: 700; color: var(--text); }
-    .job-period {
-      font-size: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--muted);
-      background: var(--tag-bg);
-      padding: 3px 10px;
-      border-radius: 6px;
-      white-space: nowrap;
-    }
-    .job-company {
-      font-size: 14px;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-    .job-desc {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-      font-style: italic;
-    }
-    .subsection { margin-bottom: 1.5rem; }
-    .subsection-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--accent4);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.6rem;
-    }
-    ul { list-style: none; }
-    ul li {
-      position: relative;
-      padding-left: 1.25rem;
-      font-size: 14px;
-      color: #c9d1d9;
-      margin-bottom: 0.5rem;
-      line-height: 1.65;
-    }
-    ul li::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-size: 11px;
-      top: 4px;
-    }
-    strong { color: var(--text); font-weight: 600; }
-    .highlight-num { color: var(--accent2); font-weight: 700; font-family: 'JetBrains Mono', monospace; }
-    .divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
-
-    /* ── PROJECTS ── */
-    .project-grid { display: grid; gap: 1.25rem; }
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 0.5rem;
-      flex-wrap: wrap;
-    }
-    .project-name { font-size: 16px; font-weight: 700; color: var(--text); }
-    .project-badge {
-      font-size: 11px;
-      font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 4px;
-      white-space: nowrap;
-    }
-    .badge-green { background: rgba(63, 185, 80, 0.15); color: var(--accent2); border: 1px solid rgba(63, 185, 80, 0.3); }
-    .badge-yellow { background: rgba(210, 168, 70, 0.15); color: #e3b341; border: 1px solid rgba(210, 168, 70, 0.3); }
-    .project-stack {
-      font-size: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-    .project-card ul li { font-size: 13.5px; }
-
-    /* ── NOTABLE ── */
-    .notable-list { display: flex; flex-direction: column; gap: 0.75rem; }
-    .notable-item {
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem 1.25rem;
-    }
-    .notable-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
-    .notable-text { font-size: 14px; color: #c9d1d9; line-height: 1.6; }
-
-    /* ── EDUCATION ── */
-    .edu-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-    .edu-icon { font-size: 2rem; flex-shrink: 0; }
-    .edu-degree { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
-    .edu-uni { font-size: 14px; color: var(--accent); font-weight: 600; margin-bottom: 0.25rem; }
-    .edu-period { font-size: 12px; color: var(--muted); }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem;
-      text-align: center;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    footer a { color: var(--accent); text-decoration: none; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
-      main { padding: 2rem 1.25rem 4rem; }
-      .skill-group { flex-direction: column; gap: 0.4rem; }
-      .skill-group-name { min-width: unset; }
-      .job-header { flex-direction: column; }
-    }
-  </style>
+  footer{padding:40px 0 64px;color:var(--muted);font-size:.85rem}
+  footer a{color:var(--accent);text-decoration:none}
+  .note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent3);border-radius:8px;padding:14px 16px;color:var(--muted);font-size:.88rem;margin-top:20px}
+</style>
 </head>
 <body>
 
-  <nav>
-    <span class="logo">KM</span>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
+<nav><div class="wrap">
+  <span class="brand">Kishore Manchikatla</span>
+  <span class="links">
+    <a href="#work">Approach</a>
     <a href="#projects">Projects</a>
-    <a href="#education">Education</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="argus.html">Argus</a>
+  </span>
+</div></nav>
 
-  <main>
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Platform Engineering · 12+ years</div>
+  <h1>Making AI-driven automation<br/>trustworthy in production.</h1>
+  <div class="role">Staff Platform Engineer — AI Systems · Kubernetes · AWS</div>
 
-    <!-- ── 01 HERO ── -->
-    <section class="hero" id="about">
-      <p class="hero-greeting">// hello world</p>
-      <h1>Kishore<br><span>Manchikatla</span></h1>
-      <p class="hero-title">Senior Platform Engineer · AWS · Kubernetes · GitOps · AI Tooling</p>
-      <p class="hero-summary">
-        Platform engineer with <strong>11+ years</strong> building and operating cloud-native infrastructure at scale.
-        I own GitOps platforms across <strong>5 AWS regions and 10+ environments</strong> — from Crossplane-managed
-        AWS infrastructure to custom Kubernetes operators in Go. I combine deep infrastructure engineering with
-        AI tooling: I built <strong>Argus</strong>, an open-source AI security agent, and am building a
-        <strong>FinOps agent</strong> powered by Claude and AWS Cost Explorer.
-      </p>
-      <div class="hero-links">
-        <a class="btn-primary" href="https://www.linkedin.com/in/kishore-manchikatla-17b8918a/" target="_blank">
-          💼 LinkedIn
-        </a>
-        <a class="btn-ghost" href="https://github.com/kmanchi107115" target="_blank">
-          🐙 GitHub
-        </a>
-        <a class="btn-ghost" href="mailto:kishore.manchikatla@hexagon.com">
-          ✉️ Email
-        </a>
-        <a class="btn-ghost" href="resume-senior-platform-engineer.pdf" download>
-          📄 Download CV
-        </a>
-      </div>
-    </section>
+  <p class="thesis">
+    Most teams are now asking how to let AI act on production infrastructure without it breaking something.
+    My answer is <strong>verification infrastructure</strong>: conformance harnesses, evaluation gates and
+    deterministic guardrails that make automated systems provably safe to run against live clusters.
+  </p>
+  <p class="sub">
+    Five years owning the GitOps control plane, infrastructure-as-code, CI/CD platform and cloud security posture
+    for a geospatial reality-capture SaaS on AWS/EKS — spanning 8 AWS accounts, 5 production regions and ~19
+    Kubernetes clusters. Before that, seven years of cloud migration and release automation for enterprise clients.
+  </p>
+  <div class="cta">
+    <a class="btn primary" href="#projects">See the work</a>
+    <a class="btn" href="argus.html">Argus — AI security platform</a>
+    <a class="btn" href="v1.html">Previous version of this site</a>
+  </div>
+</div></header>
 
-    <!-- ── METRICS ── -->
-    <div class="metrics">
-      <div class="metric-card">
-        <div class="metric-value">11+</div>
-        <div class="metric-label">Years of experience</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value green">$29k</div>
-        <div class="metric-label">Annual cloud savings delivered</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value">5</div>
-        <div class="metric-label">AWS regions owned</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value purple">1,300+</div>
-        <div class="metric-label">Releases automated in 3 months</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value red">30+</div>
-        <div class="metric-label">Platform operators deployed</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-value green">6</div>
-        <div class="metric-label">Scanners in Argus AI agent</div>
-      </div>
+<section id="metrics"><div class="wrap">
+  <h2><span class="num">01</span>By the numbers</h2>
+  <p class="lede">Figures from systems I built or own. Percentages and counts rather than employer-internal financials.</p>
+  <div class="metrics">
+    <div class="metric"><div class="v">~75%</div><div class="l">reduction in development-environment cloud spend</div></div>
+    <div class="metric"><div class="v">45–90m → &lt;5m</div><div class="l">incident triage time, via AI diagnosis engine</div></div>
+    <div class="metric"><div class="v">105</div><div class="l">GitOps ApplicationSets owned across 19 clusters</div></div>
+    <div class="metric"><div class="v">46%</div><div class="l">of the shared CI platform authored (top contributor)</div></div>
+    <div class="metric"><div class="v">~400K</div><div class="l">lines across two sole-authored systems</div></div>
+    <div class="metric"><div class="v">~17K</div><div class="l">automated tests guarding them</div></div>
+  </div>
+</div></section>
+
+<section id="work"><div class="wrap">
+  <h2><span class="num">02</span>How I work</h2>
+  <p class="lede">Three principles that show up in everything below.</p>
+  <div class="cards">
+    <div class="card">
+      <h3>Deterministic first, model second</h3>
+      <p>An LLM is a leaf, not a controller. Rules, graphs and known-issue registries resolve the common cases with
+      zero model calls — cheaper, instant and reproducible. The model handles only what's genuinely novel.</p>
+      <ul>
+        <li>In production this meant <b>~80% of failures resolved with zero or one model call</b>.</li>
+        <li>Deterministic paths are also testable, which is what makes the whole system auditable.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Safety as an artifact, not a policy</h3>
+      <p>"We won't do X" is a comment. A check that fails the build is an engineering control. I make dangerous
+      states unreachable by construction and then prove it in CI.</p>
+      <ul>
+        <li>A write-capable tool that <b>does not exist in the process</b> unless explicitly enabled at startup.</li>
+        <li>An output guard that withholds destructive commands a model proposes.</li>
+        <li>A redaction layer proven <b>byte-identical across two languages</b> against a golden corpus — including a
+        negative case that fails on over-scrubbing.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Velocity is only safe if machines check it</h3>
+      <p>I build with AI-agent orchestration — parallel subagents, reusable skills, isolated worktrees — which
+      produces a lot of code quickly. The engineering that matters is refusing to trust it.</p>
+      <ul>
+        <li>Evaluation harnesses with pinned baselines that <b>fail releases on regression</b>.</li>
+        <li>Determinism tests with <b>network egress jailed</b>, so nothing can silently call a model.</li>
+        <li>A linter that fails the build when a repository <b>contradicts its own documentation</b>.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <h2><span class="num">03</span>Selected systems</h2>
+  <p class="lede">Designed and built independently. Both are proprietary — source is not public — so what follows is
+  architecture and engineering approach.</p>
+  <div class="cards">
+
+    <div class="card">
+      <h3>Argus — AI-assisted application security platform <span class="badge int">internal project</span></h3>
+      <div class="meta">sole author · Python · TypeScript/React · Kotlin · ~375K LOC · 16.4K tests</div>
+      <p>A security-analysis platform that runs a large fleet of scanner adapters and applies a language-model layer
+      for vulnerability chaining, severity classification, false-positive triage and remediation — while keeping
+      deduplication deliberately deterministic so results stay reproducible.</p>
+      <ul>
+        <li><b>32 scanner adapters</b> across SAST, SCA, secrets, IaC and container analysis.</li>
+        <li><b>Four delivery modes</b> — CLI, REST API, an MCP server for agent integration, and CI/CD plugins.</li>
+        <li><b>Releases gated by an evaluation harness</b> with a pinned recall / false-positive baseline.</li>
+        <li>Proposed fixes are emitted as diffs and <b>re-scanned in a sandbox</b> before being surfaced.</li>
+        <li>Exploit-likelihood enrichment; standards-compliant SARIF output; web UI and IDE extensions.</li>
+      </ul>
+      <a class="btn" href="argus.html" style="margin-top:16px">Read the deep dive →</a>
     </div>
 
-    <!-- ── 02 SKILLS ── -->
-    <section id="skills">
-      <div class="section-label">
-        <span class="section-num">02</span>
-        <span class="section-title">⚙️ Skills</span>
-      </div>
-      <div class="skill-groups">
-        <div class="skill-group">
-          <span class="skill-group-name">Kubernetes & GitOps</span>
-          <div class="tags">
-            <span class="tag highlight">EKS</span>
-            <span class="tag highlight">ArgoCD</span>
-            <span class="tag highlight">Karpenter</span>
-            <span class="tag highlight">Helm</span>
-            <span class="tag highlight">Custom Operators (Go)</span>
-            <span class="tag">Crossplane</span>
-            <span class="tag">controller-runtime</span>
-            <span class="tag">IRSA</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <span class="skill-group-name">AWS</span>
-          <div class="tags">
-            <span class="tag">EC2</span><span class="tag">RDS/Aurora</span><span class="tag">S3</span>
-            <span class="tag">IAM</span><span class="tag">KMS</span><span class="tag">ElastiCache</span>
-            <span class="tag">EFS</span><span class="tag">ECR</span><span class="tag">WAF</span>
-            <span class="tag">GuardDuty</span><span class="tag">Security Hub</span>
-            <span class="tag">Secrets Manager</span><span class="tag">CloudWatch</span>
-            <span class="tag">CodeArtifact</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <span class="skill-group-name">IaC</span>
-          <div class="tags">
-            <span class="tag highlight">Terraform</span>
-            <span class="tag highlight">Crossplane</span>
-            <span class="tag">Upbound Providers</span>
-            <span class="tag">Helm</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <span class="skill-group-name">Languages</span>
-          <div class="tags">
-            <span class="tag highlight">Go</span>
-            <span class="tag highlight">Python</span>
-            <span class="tag">Bash</span>
-            <span class="tag">YAML / Helm templating</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <span class="skill-group-name">Security</span>
-          <div class="tags">
-            <span class="tag">Snyk</span><span class="tag">Semgrep</span><span class="tag">Trivy</span>
-            <span class="tag">Gitleaks</span><span class="tag">Bandit</span><span class="tag">CodeQL</span>
-            <span class="tag">OSV-Scanner</span><span class="tag">Pod Security Standards</span>
-            <span class="tag">Network Policies</span><span class="tag">SARIF</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <span class="skill-group-name">Observability</span>
-          <div class="tags">
-            <span class="tag">Datadog</span><span class="tag">Prometheus</span>
-            <span class="tag">Thanos</span><span class="tag">Grafana</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <span class="skill-group-name">CI/CD</span>
-          <div class="tags">
-            <span class="tag">GitLab CI</span><span class="tag">GitHub Actions</span>
-            <span class="tag">ArgoCD GitOps</span><span class="tag">Docker</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <span class="skill-group-name">AI / LLM</span>
-          <div class="tags">
-            <span class="tag highlight">Anthropic Claude API</span>
-            <span class="tag highlight">MCP Servers</span>
-            <span class="tag">Tool-use agent loops</span>
-            <span class="tag">Claude Code</span>
-            <span class="tag">FastAPI</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="card">
+      <h3>Safe agentic AI for production Kubernetes <span class="badge int">internal project</span></h3>
+      <div class="meta">sole author of the substrate and 6 of 7 servers · Go + Python · ~32K LOC · 509 tests</div>
+      <p>A fleet of read-only-first MCP servers that let an AI agent diagnose live Kubernetes, cloud and workflow
+      problems <em>without being able to damage them</em>. I wrote the shared substrate, the cross-language
+      conformance harness and every CI gate; a colleague later built a seventh server on the framework.</p>
+      <ul>
+        <li><b>60 tools — 59 read-only, 1 write</b>, and the write tool is absent from the process unless explicitly
+        enabled. A CI check boots every server over JSON-RPC and asserts the registry.</li>
+        <li>Default-deny cluster-context guard: fail-closed, non-production only, enforced at every entry point.</li>
+        <li>Prompt-injection defence — untrusted cluster output is normalised, structurally fenced, and the model is
+        told so at handshake time.</li>
+        <li>Zero-model-call determinism asserted in CI with network egress jailed.</li>
+      </ul>
+    </div>
 
-    <!-- ── 03 EXPERIENCE ── -->
-    <section id="experience">
-      <div class="section-label">
-        <span class="section-num">03</span>
-        <span class="section-title">💼 Experience</span>
-      </div>
+  </div>
+  <div class="note">
+    Both systems were built for internal use and dogfooded against real production services. Source and internal
+    architecture detail are proprietary and deliberately not published here — happy to walk through design decisions
+    in conversation.
+  </div>
+</div></section>
 
-      <!-- Hexagon -->
-      <div class="job">
-        <div class="job-header">
-          <span class="job-title">Platform Engineer</span>
-          <span class="job-period">Aug 2021 – Present</span>
-        </div>
-        <div class="job-company">Hexagon Digital Reality (HxDR) · Hyderabad, India</div>
-        <p class="job-desc">
-          Cloud-native SaaS platform for 3D digital reality — AWS EKS across 5 regions, 10+ environments, 20+ microservices.
-        </p>
+<section id="experience"><div class="wrap">
+  <h2><span class="num">04</span>Experience</h2>
 
-        <div class="subsection">
-          <div class="subsection-title">☸️ Kubernetes Operator (Go)</div>
-          <ul>
-            <li>Designed and maintain a custom Kubernetes operator (Go, controller-runtime) that automates developer environment lifecycle — provisioning, expiry, teardown, and multi-region promotion — reducing per-environment setup from hours to minutes</li>
-            <li>Operator integrates with GitLab MR workflows to trigger automated config promotions across environments via custom CRDs</li>
-          </ul>
-        </div>
+  <div class="job">
+    <div class="top">
+      <h3>Hexagon — HxDR Platform · Platform / DevOps Engineering</h3>
+      <span class="when">Aug 2021 – Jul 2026</span>
+    </div>
+    <p class="ctx">Cloud-native geospatial reality-capture SaaS on AWS/EKS: ~47 microservices across 5 production
+    regions, on a multi-account AWS organisation with Control Tower governance.</p>
 
-        <div class="subsection">
-          <div class="subsection-title">🔄 GitOps Platform</div>
-          <ul>
-            <li>Own the end-to-end GitOps platform built on ArgoCD ApplicationSets — deploys <span class="highlight-num">20+</span> microservices and <span class="highlight-num">30+</span> platform operators across all environments using a merge-generator pattern with base + per-cluster overrides</li>
-            <li>Architected a versioned platform manifests library for platform tool resources (Karpenter, Datadog, Grafana, Crossplane providers), reducing duplication across clusters and enabling independent versioned releases</li>
-          </ul>
-        </div>
+    <div class="group">
+      <h4>Developer platform &amp; AI</h4>
+      <ul>
+        <li><b>Primary author</b> of a Go/controller-runtime <b>Kubernetes operator and CLI providing on-demand
+        ephemeral development environments</b> — a custom resource with a four-state lifecycle reconciler and
+        automatic expiry teardown. Designed and built the CLI and the AI subsystem end-to-end.</li>
+        <li>Built a <b>deterministic-first AI diagnosis and repair engine</b>: a rule library plus a service knowledge
+        graph resolve most failures with zero or one model call; a bounded agent loop handles the rest, with tiered
+        autonomy, an output guard, secret redaction and audited remediation. <b>Triage 45–90 min → under 5.</b></li>
+        <li>Shipped it as an <b>MCP server</b> (read-only tools plus one gated write) so agents could operate it safely.</li>
+        <li>Added sleep / wake / weekend scaling for environments as a GitOps-committed state machine.</li>
+      </ul>
+    </div>
 
-        <div class="subsection">
-          <div class="subsection-title">☁️ AWS Infrastructure (Crossplane + Terraform)</div>
-          <ul>
-            <li>Manage all AWS infrastructure declaratively via Crossplane: RDS/Aurora, S3, IAM, IRSA, KMS, Redis/ElastiCache, EFS, ECR, WAF, Secrets Manager, CodeArtifact, GuardDuty, Security Hub, AWS Config</li>
-            <li>Designed a 10-layer Terraform workspace pattern for foundational EKS infrastructure — layered from networking through security across all AWS accounts</li>
-            <li>Implemented an internal OCI registry (Zot) as a pull-through proxy for provider images, eliminating external registry dependency</li>
-          </ul>
-        </div>
+    <div class="group">
+      <h4>GitOps control plane</h4>
+      <ul>
+        <li>Owned the platform's GitOps control plane — <b>105 ArgoCD ApplicationSets</b> deploying ~47 microservices
+        and ~34 platform operators to <b>8 AWS accounts, 5 regions and 19 EKS clusters</b>, continuously self-healing.</li>
+        <li>Introduced and tuned Karpenter, KEDA and right-sizing tooling; stood up an <b>OCI pull-through registry
+        proxy</b> to remove an external dependency; led a major Crossplane platform upgrade.</li>
+      </ul>
+    </div>
 
-        <div class="subsection">
-          <div class="subsection-title">🌍 Multi-Region & Disaster Recovery</div>
-          <ul>
-            <li>Onboarded <span class="highlight-num">2 new AWS regions</span> end-to-end — infrastructure, GitOps, and microservice config — from scratch</li>
-            <li>Led the Disaster Recovery exercise (regional outage scenario) — achieved all recovery goals within the <span class="highlight-num">40-hour</span> target window (Sep 2025)</li>
-            <li>Own and maintain the company-wide Disaster Recovery Plan (DRP)</li>
-          </ul>
-        </div>
+    <div class="group">
+      <h4>Cloud cost engineering</h4>
+      <ul>
+        <li>Owned the programme that <b>cut development cloud spend ~75%</b> — root-causing <b>5–18× memory and 20× CPU
+        over-provisioning</b> that was preventing the autoscaler from bin-packing, then adding spot consolidation with
+        disruption budgets, scheduled scale-to-zero and backup/telemetry scope reduction.</li>
+      </ul>
+    </div>
 
-        <div class="subsection">
-          <div class="subsection-title">🔒 Security Hardening</div>
-          <ul>
-            <li>Evaluated and implemented K8s Pod Security Standards (PSS) enforcement and Default-Deny network policy posture across EKS clusters</li>
-            <li>Established centralised vulnerability policy management (Snyk) across all microservice repositories with global defaults and per-service overrides</li>
-            <li>Enabled GuardDuty, Security Hub, and AWS Config across all accounts; reduced GuardDuty spend by disabling unused regions — saving <strong>~$14,000/year</strong></li>
-          </ul>
-        </div>
+    <div class="group">
+      <h4>Infrastructure as code</h4>
+      <ul>
+        <li>Authored a <b>10-layer Terraform foundation</b> across all accounts plus a <b>Crossplane control-plane
+        library of 16 bundles and 15 composite resource definitions</b> — relational and cache datastores, object
+        storage, IAM/workload identity, clusters, WAF, KMS, serverless and messaging.</li>
+        <li><b>Onboarded a new production region end-to-end</b> — network design, region-base infrastructure,
+        per-environment configuration and CI wiring.</li>
+        <li>Built a <b>container-image supply chain</b> — pull-through mirror, automated upstream version bumps,
+        registry lifecycle policies and workload-identity-native authentication — after diagnosing a controller bug
+        firing roughly 147,000 times.</li>
+      </ul>
+    </div>
 
-        <div class="subsection">
-          <div class="subsection-title">💰 Karpenter & FinOps</div>
-          <ul>
-            <li>Manage Karpenter NodePool and EC2NodeClass resources across all clusters; tuned spot/on-demand mix, instance families, and consolidation settings to optimise node utilisation</li>
-            <li>Reduced cloud monthly spend from <span class="highlight-num">$8,742 peak → ~$3,545</span> — an annualised saving of <span class="highlight-num">~$29,000/year</span> — through right-sizing, idle resource cleanup, and regional decommissioning</li>
-          </ul>
-        </div>
+    <div class="group">
+      <h4>Security &amp; compliance</h4>
+      <ul>
+        <li><b>Re-platformed the cloud security posture onto self-healing GitOps</b> across a nine-account
+        organisation — cloud security posture management with cross-region finding aggregation, threat detection,
+        configuration guardrails and identity, migrated from Terraform to Crossplane to eliminate manual drift.</li>
+        <li>Authored the security alerting pipeline (findings → event bus → function → chat, severity-filtered).</li>
+        <li>Integrated dependency scanning as a <b>build-failing CI gate</b> with org-wide policy and automated
+        ticket creation; led its migration to a new regional instance.</li>
+        <li><b>Ran the pod-security spike that selected the platform's admission-control tool</b>, and designed a
+        default-deny network-policy posture.</li>
+        <li>Contributed the technical controls and evidence underpinning <b>ISO 27001:2022 and SOC 2 Type 2</b>.</li>
+      </ul>
+    </div>
 
-        <div class="subsection">
-          <div class="subsection-title">📊 Observability</div>
-          <ul>
-            <li>Deploy and manage Datadog, Prometheus with Thanos sidecar (multi-cluster metrics), and Grafana with custom dashboards across all clusters via GitOps</li>
-          </ul>
-        </div>
-      </div>
+    <div class="group">
+      <h4>CI/CD platform — used by 70+ repositories</h4>
+      <ul>
+        <li><b>Top contributor (46% of commits)</b> to the shared CI platform: reusable templates for build, test,
+        publish, release and scan across Maven, Go, Node and Python, plus a multi-library monorepo pipeline.</li>
+        <li>Drove <b>semantic-release</b> adoption — predicting the version bump during the merge train and validating
+        it at release; sole-authored automated merge-request sizing; standardised pipelines with DAG parallelism.</li>
+      </ul>
+    </div>
 
-      <hr class="divider" />
+    <div class="group">
+      <h4>Reliability</h4>
+      <ul>
+        <li><b>Owned the postmortem for a P1 incident</b> in which an accidental deletion of a cluster-scoped resource
+        caused node loss across all environments — and drove the prevention control.</li>
+        <li>Participated hands-on in the company-wide <b>disaster-recovery exercise</b> — all recovery goals met inside
+        the target window — authored the evidence summary and debugged a network-fabric composition failure mid-failover.</li>
+        <li>Delivered multi-cluster observability via GitOps; automated access-review reporting.</li>
+      </ul>
+    </div>
+  </div>
 
-      <!-- Rubiconred -->
-      <div class="job">
-        <div class="job-header">
-          <span class="job-title">Engineer IV</span>
-          <span class="job-period">Aug 2014 – Aug 2021</span>
-        </div>
-        <div class="job-company">Rubicon Red Software India Private Limited · Hyderabad, India</div>
-        <p class="job-desc">Oracle Platinum partner delivering enterprise middleware and cloud solutions to global enterprise clients.</p>
+  <div class="job">
+    <div class="top">
+      <h3>Rubicon Red — Oracle Platinum Partner · Consulting</h3>
+      <span class="when">~2014 – 2021</span>
+    </div>
+    <p class="ctx">Cloud migration, release automation and middleware platform engineering for enterprise clients.</p>
+    <div class="group">
+      <ul>
+        <li><b>Telecommunications client, AWS migration</b> — delivered end-to-end environments in <b>4–8 hours</b>
+        versus weeks or months manually, using compute, container, database, serverless, storage and CI services.</li>
+        <li><b>Government revenue agency</b> — automated <b>1,300+ releases across 9 environments in 3 months</b>,
+        replacing a manual weeks-per-environment process.</li>
+        <li>Led internal adoption of an infrastructure-automation framework for middleware, on-premises and cloud.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
 
-        <div class="subsection">
-          <div class="subsection-title">☁️ AWS Cloud Migration — Vodafone Ireland</div>
-          <ul>
-            <li>Led migration of on-premises workloads to AWS for <strong>Vodafone Ireland</strong>, one of Europe's largest telecom providers</li>
-            <li>Designed and delivered end-to-end environments in <span class="highlight-num">4–8 hours</span> vs. weeks or months manually — using EC2, EFS, EC2 Image Builder, ECS Fargate, RDS, Lambda, S3, ECR, ALB, Route 53, CodeBuild, CodeCommit, Systems Manager</li>
-            <li>Built CloudWatch monitoring solutions providing full observability across EC2, ALB, and application logs</li>
-          </ul>
-        </div>
+<section id="skills"><div class="wrap">
+  <h2><span class="num">05</span>Technical</h2>
+  <div class="skills">
+    <div class="srow"><div class="k">Kubernetes</div><div class="tags">
+      <span class="tag">EKS</span><span class="tag">Operators (controller-runtime)</span><span class="tag">CRDs</span>
+      <span class="tag">ArgoCD / GitOps</span><span class="tag">Helm</span><span class="tag">Argo Rollouts</span>
+      <span class="tag">Argo Workflows</span><span class="tag">Karpenter</span><span class="tag">KEDA</span>
+      <span class="tag">HPA / VPA</span><span class="tag">Kyverno</span></div></div>
+    <div class="srow"><div class="k">IaC</div><div class="tags">
+      <span class="tag">Crossplane</span><span class="tag">Terraform</span><span class="tag">Terraform Cloud</span>
+      <span class="tag">AWS Organizations</span><span class="tag">Control Tower</span></div></div>
+    <div class="srow"><div class="k">AWS</div><div class="tags">
+      <span class="tag">EKS</span><span class="tag">IAM / IRSA</span><span class="tag">RDS / Aurora</span>
+      <span class="tag">S3</span><span class="tag">KMS</span><span class="tag">Secrets Manager</span>
+      <span class="tag">WAF</span><span class="tag">CloudFront</span><span class="tag">Transit Gateway</span>
+      <span class="tag">Cost Explorer</span></div></div>
+    <div class="srow"><div class="k">AI systems</div><div class="tags">
+      <span class="tag">MCP</span><span class="tag">Amazon Bedrock</span><span class="tag">Agentic tool design</span>
+      <span class="tag">Prompt-injection defence</span><span class="tag">Evaluation harnesses</span>
+      <span class="tag">Deterministic-first architecture</span></div></div>
+    <div class="srow"><div class="k">CI/CD</div><div class="tags">
+      <span class="tag">GitLab CI</span><span class="tag">GitHub Actions</span><span class="tag">semantic-release</span>
+      <span class="tag">rootless Buildah</span><span class="tag">ECR</span><span class="tag">Kargo</span>
+      <span class="tag">Zot</span></div></div>
+    <div class="srow"><div class="k">Security</div><div class="tags">
+      <span class="tag">CSPM</span><span class="tag">Threat detection</span><span class="tag">Config guardrails</span>
+      <span class="tag">SAST / SCA</span><span class="tag">SARIF</span><span class="tag">External Secrets</span>
+      <span class="tag">ISO 27001</span><span class="tag">SOC 2</span></div></div>
+    <div class="srow"><div class="k">Observability</div><div class="tags">
+      <span class="tag">Datadog</span><span class="tag">Prometheus</span><span class="tag">Thanos</span>
+      <span class="tag">Grafana</span><span class="tag">Postmortems</span><span class="tag">DR exercises</span></div></div>
+    <div class="srow"><div class="k">Languages</div><div class="tags">
+      <span class="tag">Go</span><span class="tag">Python</span><span class="tag">TypeScript / React</span>
+      <span class="tag">Bash</span><span class="tag">Kotlin</span></div></div>
+  </div>
+</div></section>
 
-        <div class="subsection">
-          <div class="subsection-title">🚀 Release Automation — Inland Revenue Dept, New Zealand</div>
-          <ul>
-            <li>Automated the provisioning, build, and deployment of <span class="highlight-num">1,300+ releases across 9 environments in 3 months</span> — saving multiple years of equivalent manual work</li>
-            <li>Delivered repeatable, auditable pipelines replacing a previously manual, weeks-long process per environment</li>
-          </ul>
-        </div>
-
-        <div class="subsection">
-          <div class="subsection-title">🏗️ WebLogic Platform Engineering</div>
-          <ul>
-            <li>Oracle WebLogic administration — domain configuration, cluster management, patching, and performance tuning for enterprise clients</li>
-            <li>Led internal adoption of <strong>MyST</strong> (Rubicon Red's WebLogic automation tool) for infrastructure-as-code provisioning and deployment automation</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── 04 PROJECTS ── -->
-    <section id="projects">
-      <div class="section-label">
-        <span class="section-num">04</span>
-        <span class="section-title">🚀 Projects</span>
-      </div>
-      <div class="project-grid">
-
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-name">🛡️ Argus — AI Security Agent</span>
-            <span class="project-badge badge-green">Open Source</span>
-          </div>
-          <p class="project-stack">Python · FastAPI · Anthropic Claude API · Semgrep · Trivy · Gitleaks · Bandit · CodeQL · OSV-Scanner</p>
-          <ul>
-            <li>Built a production-grade AI security agent that runs <strong>6 open-source SAST/SCA scanners in parallel</strong> and uses Claude to deduplicate findings, chain related vulnerabilities, generate CVSS scores, CWE mappings, and remediation with secure code examples</li>
-            <li><strong>4 usage modes:</strong> CLI, REST API, MCP server (Claude Code integration), CI/CD templates (GitHub Actions, GitLab CI, Azure Pipelines)</li>
-            <li>Features: false-positive triage agent, fix generation agent (git-apply-ready diffs), EPSS + CISA KEV enrichment, incremental scan cache, baseline mode, SARIF 2.1.0 output, HTML dashboard, Slack / Jira / Teams / GitHub PR / GitLab MR notifications</li>
-            <li><strong>200+ tests</strong>; self-scanned — risk score 18 / 100</li>
-          </ul>
-          <br/>
-          <div class="tags">
-            <span class="tag">Semgrep</span><span class="tag">Trivy</span><span class="tag">SARIF</span>
-            <span class="tag">MCP Server</span><span class="tag">FastAPI</span><span class="tag">Claude API</span>
-            <span class="tag">EPSS</span><span class="tag">CISA KEV</span>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-name">💰 FinOps Agent</span>
-            <span class="project-badge badge-yellow">In Progress</span>
-          </div>
-          <p class="project-stack">Python · Anthropic Claude API · AWS Cost Explorer MCP</p>
-          <ul>
-            <li>AI agent that uses Claude with the AWS Cost Explorer MCP server to automate cloud cost anomaly investigation — queries spend data, identifies root causes, and generates actionable remediation reports</li>
-            <li>Applied to real production accounts — identified and drove <span class="highlight-num">$29,000+/year</span> in annualised savings</li>
-          </ul>
-          <br/>
-          <div class="tags">
-            <span class="tag">AWS Cost Explorer</span><span class="tag">Claude API</span>
-            <span class="tag">MCP</span><span class="tag">FinOps</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ── 05 EDUCATION ── -->
-    <section id="education">
-      <div class="section-label">
-        <span class="section-num">05</span>
-        <span class="section-title">🎓 Education</span>
-      </div>
-      <div class="edu-card">
-        <div class="edu-icon">🏛️</div>
-        <div>
-          <div class="edu-degree">B.Tech, Computer Science &amp; Engineering (CSE)</div>
-          <div class="edu-uni">Jawaharlal Nehru Technological University, Hyderabad</div>
-          <div class="edu-period">2010 – 2014</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── 06 NOTABLE ── -->
-    <section id="notable">
-      <div class="section-label">
-        <span class="section-num">06</span>
-        <span class="section-title">⭐ Notable</span>
-      </div>
-      <div class="notable-list">
-        <div class="notable-item">
-          <span class="notable-icon">🎤</span>
-          <span class="notable-text">Attended <strong>KubeCon India 2025</strong> — presented internal takeaways on Kube Resource Orchestrator (KRO) to the platform team</span>
-        </div>
-        <div class="notable-item">
-          <span class="notable-icon">🔥</span>
-          <span class="notable-text">Postmortem owner: P1 incident (accidental deletion of a cluster-wide ArgoCD resource — caused node loss across all environments, Jun 2024). Drove root-cause analysis and implemented guardrails to prevent recurrence</span>
-        </div>
-        <div class="notable-item">
-          <span class="notable-icon">📦</span>
-          <span class="notable-text"><strong>~1,000 commits</strong> across platform repos since Aug 2021 — K8s operator, GitOps platform, Crossplane infra, security tooling</span>
-        </div>
-        <div class="notable-item">
-          <span class="notable-icon">🤖</span>
-          <span class="notable-text">Early adopter of AI-assisted engineering — built production AI tools (Argus, FinOps Agent) using Anthropic Claude API and MCP server architecture</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── 07 CONTACT ── -->
-    <section id="contact">
-      <div class="section-label">
-        <span class="section-num">07</span>
-        <span class="section-title">📬 Contact</span>
-      </div>
-      <div class="hero-links">
-        <a class="btn-primary" href="https://www.linkedin.com/in/kishore-manchikatla-17b8918a/" target="_blank">💼 LinkedIn</a>
-        <a class="btn-ghost" href="https://github.com/kmanchi107115" target="_blank">🐙 GitHub</a>
-        <a class="btn-ghost" href="mailto:kishore.manchikatla@hexagon.com">✉️ kishore.manchikatla@hexagon.com</a>
-        <a class="btn-ghost" href="resume-senior-platform-engineer.pdf" download>📄 Download CV (PDF)</a>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    Built with vanilla HTML/CSS · Hosted on <a href="https://pages.github.com" target="_blank">GitHub Pages</a> · Kishore Manchikatla © 2026
-  </footer>
+<footer><div class="wrap">
+  <p><strong>Kishore Manchikatla</strong> — Staff Platform Engineer · AI Systems, Kubernetes, AWS</p>
+  <p style="margin-top:8px">
+    <a href="argus.html">Argus deep dive</a> ·
+    <a href="v1.html">Previous site version</a> ·
+    <a href="https://github.com/kishmanchik">GitHub</a>
+  </p>
+  <p style="margin-top:14px;font-size:.8rem">
+    Figures describe systems I built or owned. Employer-internal identifiers, financials and architecture detail are
+    intentionally omitted.
+  </p>
+</div></footer>
 
 </body>
 </html>
