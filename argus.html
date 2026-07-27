@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Argus — AI-assisted application security platform · Kishore Manchikatla</title>
+<meta name="description" content="Argus: an internal AI-assisted application security platform. 32 scanner adapters, four delivery modes, 16.4K tests, releases gated by an evaluation harness. Design and engineering approach." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root{
+    --bg:#0d1117; --surface:#161b22; --border:#21262d; --text:#e6edf3; --muted:#8b949e;
+    --accent:#58a6ff; --accent2:#3fb950; --accent3:#f78166; --accent4:#d2a8ff;
+    --tag-bg:#1f2937; --card:#1c2128;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
+  code,.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+  nav{position:sticky;top:0;z-index:50;background:rgba(13,17,23,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:16px}
+  nav .brand{font-weight:600}
+  nav a{color:var(--muted);text-decoration:none;font-size:.9rem;margin-left:18px}
+  nav a:hover{color:var(--accent)}
+  header.hero{padding:64px 0 44px;border-bottom:1px solid var(--border)}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+  h1{font-size:clamp(1.9rem,4.5vw,2.7rem);line-height:1.12;letter-spacing:-1px;font-weight:700}
+  .tagline{margin-top:16px;font-size:1.08rem;color:var(--muted);max-width:70ch}
+  .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+  .badge{padding:4px 11px;border-radius:20px;font-size:.75rem;font-family:'JetBrains Mono',monospace;border:1px solid var(--border);background:var(--tag-bg);color:var(--muted)}
+  .badge.int{color:var(--accent3);border-color:#5a2e22}
+  .badge.ok{color:var(--accent2);border-color:#1d4429}
+  section{padding:52px 0;border-bottom:1px solid var(--border)}
+  h2{font-size:1.4rem;letter-spacing:-.4px;margin-bottom:8px}
+  h2 .num{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--accent2);margin-right:10px}
+  .lede{color:var(--muted);margin-bottom:26px;max-width:74ch}
+  p{max-width:76ch}
+  .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+  .metric{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px}
+  .metric .v{font-family:'JetBrains Mono',monospace;font-size:1.4rem;color:var(--accent2);font-weight:500}
+  .metric .l{color:var(--muted);font-size:.82rem;margin-top:5px}
+  .cards{display:grid;gap:16px;margin-top:8px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px}
+  .card h3{font-size:1.08rem;margin-bottom:10px}
+  .card p{color:var(--muted);font-size:.95rem;margin-bottom:12px}
+  ul.clean{list-style:none;display:grid;gap:9px}
+  ul.clean li{padding-left:20px;position:relative;font-size:.95rem;color:#c9d4e0}
+  ul.clean li::before{content:'▸';position:absolute;left:0;color:var(--accent)}
+  ul.clean li b{color:var(--text)}
+  .pipeline{display:grid;gap:10px;margin-top:6px}
+  .step{display:grid;grid-template-columns:34px 1fr;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:14px 16px}
+  .step .n{font-family:'JetBrains Mono',monospace;color:var(--accent2);font-size:.9rem}
+  .step b{display:block;margin-bottom:3px}
+  .step span{color:var(--muted);font-size:.92rem}
+  .note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent3);border-radius:8px;padding:15px 17px;color:var(--muted);font-size:.9rem;margin-top:22px}
+  .note b{color:var(--text)}
+  footer{padding:38px 0 60px;color:var(--muted);font-size:.85rem}
+  footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <span class="brand">Kishore Manchikatla</span>
+  <span>
+    <a href="v2.html">← Portfolio</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#verification">Verification</a>
+  </span>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Internal project · sole author</div>
+  <h1>Argus</h1>
+  <p class="tagline">
+    An AI-assisted application security platform: it runs a large fleet of analysis engines, then uses a language
+    model to turn thousands of raw findings into a short list a developer can actually act on — without letting the
+    model make the results unreproducible.
+  </p>
+  <div class="badges">
+    <span class="badge int">proprietary — source not public</span>
+    <span class="badge">Python · TypeScript/React · Kotlin</span>
+    <span class="badge">~375K LOC</span>
+    <span class="badge ok">16,453 tests</span>
+    <span class="badge ok">eval-gated releases</span>
+  </div>
+</div></header>
+
+<section><div class="wrap">
+  <h2><span class="num">01</span>Scale</h2>
+  <p class="lede">Delivered solo. Counts are from the repository, not estimates.</p>
+  <div class="metrics">
+    <div class="metric"><div class="v">32</div><div class="l">scanner adapters integrated</div></div>
+    <div class="metric"><div class="v">4</div><div class="l">delivery modes (CLI · API · MCP · CI/CD)</div></div>
+    <div class="metric"><div class="v">16,453</div><div class="l">automated tests</div></div>
+    <div class="metric"><div class="v">2,107</div><div class="l">merged pull requests</div></div>
+    <div class="metric"><div class="v">21</div><div class="l">tagged releases</div></div>
+    <div class="metric"><div class="v">~375K</div><div class="l">lines authored</div></div>
+  </div>
+</div></section>
+
+<section id="problem"><div class="wrap">
+  <h2><span class="num">02</span>The problem</h2>
+  <p class="lede">Security tooling doesn't fail by finding too little. It fails by finding too much.</p>
+  <p style="color:var(--muted)">
+    Point a dozen scanners at a real codebase and you get thousands of findings: duplicated across tools, mostly
+    unexploitable, with no indication of which two actually matter this week. Teams respond by ignoring the dashboard
+    — which is worse than not scanning. The interesting engineering problem is not detection; it's
+    <b style="color:var(--text)">triage, prioritisation and trust</b>.
+  </p>
+</div></section>
+
+<section id="architecture"><div class="wrap">
+  <h2><span class="num">03</span>How it works</h2>
+  <p class="lede">A deliberate split: everything that must be reproducible is deterministic, and the model is used only
+  where judgement genuinely helps.</p>
+  <div class="pipeline">
+    <div class="step"><div class="n">01</div><div><b>Fan out</b><span>32 adapters run across SAST, dependency/SCA, secrets, infrastructure-as-code and container analysis — in parallel, normalised into one finding model.</span></div></div>
+    <div class="step"><div class="n">02</div><div><b>Deterministic deduplication</b><span>Cross-tool duplicates are collapsed by rule, not by model. This is intentional: it means the same input always produces the same finding set, which is what makes the output auditable and diffable between runs.</span></div></div>
+    <div class="step"><div class="n">03</div><div><b>Model-assisted analysis</b><span>The LLM layer handles what rules can't: chaining related findings into an exploit narrative, classifying severity and weakness type, and triaging likely false positives with a stated rationale.</span></div></div>
+    <div class="step"><div class="n">04</div><div><b>Exploitability enrichment</b><span>Findings are weighted by real-world exploit-likelihood and known-exploited signals, so prioritisation reflects actual risk rather than raw severity.</span></div></div>
+    <div class="step"><div class="n">05</div><div><b>Fix generation, then verification</b><span>Proposed remediations are emitted as unified diffs — and then <b>re-scanned inside a sandboxed container</b> before being surfaced. A fix that doesn't actually clear the finding never reaches the developer.</span></div></div>
+    <div class="step"><div class="n">06</div><div><b>Delivery</b><span>Results surface through a CLI, a REST API, an MCP server for agent-driven workflows, CI/CD integrations, a web UI, and IDE extensions — plus standards-compliant SARIF for anything else.</span></div></div>
+  </div>
+</div></section>
+
+<section id="verification"><div class="wrap">
+  <h2><span class="num">04</span>Why it can be trusted</h2>
+  <p class="lede">This is the part I care most about. A security tool that can't prove its own accuracy is just an
+  opinion generator — and one built quickly with AI assistance has to be held to a higher standard, not a lower one.</p>
+  <div class="cards">
+    <div class="card">
+      <h3>Releases are gated by an evaluation harness</h3>
+      <p>Accuracy is measured, not asserted. The suite runs against a version-pinned baseline and records recall and
+      false-positive rate; a regression fails the release rather than shipping quietly.</p>
+      <ul class="clean">
+        <li>Detection quality is a <b>build-blocking metric</b>, treated like a failing test.</li>
+        <li>Baselines are content-pinned, so "the benchmark changed" can't hide a regression.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>The reproducible core is kept model-free</h3>
+      <p>Deduplication and finding identity are deterministic by design. Two runs over the same commit produce the
+      same set — which is what lets results be diffed, tracked over time and used as a merge gate.</p>
+    </div>
+    <div class="card">
+      <h3>Remediations are proven, not suggested</h3>
+      <p>Every generated fix is applied and re-scanned in an isolated container. The system only proposes changes it
+      has watched resolve the finding.</p>
+    </div>
+    <div class="card">
+      <h3>Honest self-assessment is written into the docs</h3>
+      <p>The project's own documentation records where its comparisons were structurally favourable and which numbers
+      are narrow. I'd rather a reviewer find the caveat already written down than discover it themselves.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="build"><div class="wrap">
+  <h2><span class="num">05</span>How it was built</h2>
+  <p class="lede">Worth stating plainly, because the delivery rate invites the question.</p>
+  <p style="color:var(--muted)">
+    Argus was built with an <b style="color:var(--text)">AI-agent orchestration methodology I developed</b> — parallel
+    subagents working in isolated worktrees against a shared, self-mined set of project invariants and reusable skills.
+    That's how one person lands a few thousand pull requests in a matter of weeks.
+  </p>
+  <p style="color:var(--muted);margin-top:14px">
+    The engineering that actually matters is what I put in place <em>because</em> of that velocity: 16,453 automated
+    tests, an evaluation harness that fails releases on accuracy regression, a deterministic core insulated from model
+    output, sandboxed verification of every generated fix, and documentation that records its own limitations. Speed
+    without verification is a liability. The verification is the work.
+  </p>
+  <div class="note">
+    <b>Status.</b> Argus is an internal, proprietary project — the source is not published. It has been dogfooded
+    against real production services rather than distributed. Design decisions, trade-offs and the evaluation
+    methodology are things I'm glad to discuss in detail.
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <p><a href="v2.html">← Back to portfolio</a> · <a href="https://github.com/kishmanchik">GitHub</a></p>
+  <p style="margin-top:12px;font-size:.8rem">
+    Figures are measured from the repository. Employer-internal identifiers, customer data and proprietary
+    architecture detail are intentionally omitted.
+  </p>
+</div></footer>
+
+</body>
+</html>
